@@ -684,7 +684,8 @@ class _SearchState extends State<subjectdetails>
                               ),
                               Text(
                                 // apiacceptencevariable.toString()!="0"?
-                                " sp".tr,
+                                apiacceptencevariable.toString()!="0"?
+                                " sp".tr:" \$",
                                 // :" \$",
 
                                 style: TextStyle(

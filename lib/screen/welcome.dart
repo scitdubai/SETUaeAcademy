@@ -142,7 +142,7 @@ class WalkThroughScreenState extends State<WalkThroughScreen> {
   @override
   void initState() {
     _apiAcceptence.getacceptance().then((value) {
-      //  apiacceptencevariable=value.toString();
+       apiacceptencevariable=value.toString();
       
        print("apiacceptencevariable"+apiacceptencevariable.toString());
     });
