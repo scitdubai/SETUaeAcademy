@@ -1,4 +1,4 @@
-package com.example.set_academy
+package com.uae.set
 
 import io.flutter.embedding.android.FlutterActivity
 
