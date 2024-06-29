@@ -85,8 +85,7 @@ class _UserCoursesState extends State<UserCourses> {
                         fontWeight: FontWeight.bold),
                   ),
                    style: ElevatedButton.styleFrom(
-                      primary: Color(Colorbutton), // لون الخلفية
-                      onPrimary: Colors.white, // لون النص
+                      backgroundColor: Color(Colorbutton), // // لون النص
                       elevation: 8, // الارتفاع
                       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15), // الهامش الداخلي
                       shape: RoundedRectangleBorder(

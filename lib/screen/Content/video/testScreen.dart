@@ -84,7 +84,7 @@ class _TestScreenState extends State<TestScreen> {
             BorderRadius.circular(
                 15)),
                                                 minimumSize: const Size(100, 50),
-                                                primary: Colors.red)):MaterialButton(
+                                                backgroundColor: Colors.red)):MaterialButton(
                                                   color: Colors.red,
                                                   onPressed: () {
         Navigator.pushAndRemoveUntil(context,

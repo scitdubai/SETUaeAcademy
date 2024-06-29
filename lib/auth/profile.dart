@@ -476,7 +476,7 @@ class _ProfileState extends State<Profile> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(8)),
                                   minimumSize: const Size(150, 50),
-                                  primary: Colors.green)),
+                                  backgroundColor: Colors.green)),
                           SizedBox(
                             height: hi / 50,
                           ),

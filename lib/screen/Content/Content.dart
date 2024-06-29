@@ -450,7 +450,7 @@ class _ContentState extends State<Content> with SingleTickerProviderStateMixin {
                                                 borderRadius:
                                                     BorderRadius.circular(15)),
                                             minimumSize: const Size(100, 50),
-                                            primary: Colors.green)),
+                                            backgroundColor: Colors.green)),
                                   ],
                                 )
                               
