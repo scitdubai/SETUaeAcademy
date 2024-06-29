@@ -297,7 +297,7 @@ class _SearchState extends State<subjectdetails>
                                                       BorderRadius.circular(
                                                           50)),
                                               minimumSize: const Size(50, 50),
-                                              primary: Color(Colorbutton))),
+                                              backgroundColor: Color(Colorbutton))),
                                     ],
                                   )
                           ],
@@ -334,7 +334,7 @@ class _SearchState extends State<subjectdetails>
                                                         BorderRadius.circular(
                                                             50)),
                                                 minimumSize: const Size(50, 50),
-                                                primary: Color(Colorbutton))),
+                                                backgroundColor: Color(Colorbutton))),
                                       ],
                                     ),
                             ],
@@ -370,7 +370,7 @@ class _SearchState extends State<subjectdetails>
                                                       BorderRadius.circular(
                                                           50)),
                                               minimumSize: const Size(50, 50),
-                                              primary: Color(Colorbutton))),
+                                              backgroundColor: Color(Colorbutton))),
                                     ],
                                   ),
                           ],
@@ -511,7 +511,7 @@ class _SearchState extends State<subjectdetails>
                                                             minimumSize:
                                                                 const Size(
                                                                     250, 50),
-                                                            primary: Color(
+                                                            backgroundColor: Color(
                                                                 Colorbutton)))
                                                 : 
 
@@ -634,7 +634,7 @@ class _SearchState extends State<subjectdetails>
                                                             minimumSize:
                                                                 const Size(
                                                                     150, 50),
-                                                            primary: Color(
+                                                            backgroundColor: Color(
                                                                 Colorbutton)))
                                           ],
                                         ),
@@ -755,7 +755,7 @@ class _SearchState extends State<subjectdetails>
                         // side: BorderSide(width: 1.0, color: Colors.black),
                         borderRadius: BorderRadius.circular(50)),
                     minimumSize: const Size(50, 50),
-                    primary: Color(Colorbutton))),
+                    backgroundColor: Color(Colorbutton))),
           ],
         )
       ],
@@ -893,7 +893,7 @@ class _SearchState extends State<subjectdetails>
                     // side: BorderSide(width: 2.0, color: Colors.black),
                     borderRadius: BorderRadius.circular(8)),
                 minimumSize: const Size(90, 50),
-                primary: Color(Colorbutton)),
+                backgroundColor: Color(Colorbutton)),
           )
         ],
       ),
@@ -958,7 +958,7 @@ class _SearchState extends State<subjectdetails>
                     // side: BorderSide(width: 2.0, color: Colors.black),
                     borderRadius: BorderRadius.circular(8)),
                 minimumSize: const Size(90, 50),
-                primary: Color(Colorbutton)),
+                backgroundColor: Color(Colorbutton)),
           )
         ],
       ),
