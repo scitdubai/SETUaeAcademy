@@ -547,7 +547,7 @@ gettoken() async {
                                       width: 2.0, color: Colors.black),
                                   borderRadius: BorderRadius.circular(8)),
                               minimumSize: const Size(double.infinity, 50),
-                              primary: Color(0xff34196b)))
+                              backgroundColor: Color(0xff34196b)))
                       : ElevatedButton(
                           onPressed: () {},
                           child: Text(
@@ -564,7 +564,7 @@ gettoken() async {
                                       width: 2.0, color: Color(0xFF767479)),
                                   borderRadius: BorderRadius.circular(8)),
                               minimumSize: const Size(double.infinity, 50),
-                              primary: Color(0xFF767479))),
+                              backgroundColor: Color(0xFF767479))),
                   SizedBox(
                     height: hi / 50,
                   ),
