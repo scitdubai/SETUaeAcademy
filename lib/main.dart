@@ -11,7 +11,7 @@ import 'locale/locale.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  HttpOverrides.global = MyHttpOverrides();
+  // HttpOverrides.global = MyHttpOverrides();
   runApp(
     ChangeNotifierProvider(
       create: (context) => DownloadProvider(),
@@ -19,13 +19,13 @@ void main() async {
     ),
   );
 }
-class MyHttpOverrides extends HttpOverrides{
-  @override
-  HttpClient createHttpClient(SecurityContext? context){
-    return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
-  }
-}
+// class MyHttpOverrides extends HttpOverrides{
+//   @override
+//   HttpClient createHttpClient(SecurityContext? context){
+//     return super.createHttpClient(context)
+//       ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+//   }
+// }
 const appfont="Stc";
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
