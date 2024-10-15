@@ -10,6 +10,9 @@ class user_model {
   final dynamic governorate;
   final dynamic university;
   final dynamic specialization;
+  final dynamic graduatedfrommodel;
+  final dynamic year;
+  
 
   user_model({
     required this.id,
@@ -23,6 +26,8 @@ class user_model {
     required this.governorate,
     required this.university,
     required this.specialization,
+    required this.graduatedfrommodel,
+    required this.year,
   });
 
   factory user_model.fromJson(Map<String, dynamic> json) {
@@ -38,6 +43,8 @@ class user_model {
       governorate: json['governorate'] as dynamic,
       university: json['university'] as dynamic,
       specialization: json['specialization'] as dynamic,
+      graduatedfrommodel: json['graduated'] as dynamic,
+      year: json['year'] as dynamic,
     );
   }
 }

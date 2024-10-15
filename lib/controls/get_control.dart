@@ -1,4 +1,3 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:set_academy/model/categories_model.dart';
@@ -23,7 +22,7 @@ class get_Control {
   bool status = false;
 
   Future<List<Muniversities>?> get_universities() async {
-    String myUrl =apiacceptencevariable.toString()!="0"? "$serverUrl/universities":'https://set-institute.net/api/data/universities';
+    String myUrl = "$serverUrl/universities";
 
     http.Response response = await http.get(Uri.parse(myUrl));
     if (response.statusCode == 200) {
@@ -81,7 +80,7 @@ class get_Control {
   Future<List<techers_model>?> get_techers(String id) async {
     String myUrl = "$serverUrl/courses/${id}/teachers";
     http.Response response = await http.get(Uri.parse(myUrl));
-    print("nn "+myUrl);
+    print("nn " + myUrl);
     print(response.body);
     if (response.statusCode == 200) {
       print(response.body);
@@ -204,11 +203,11 @@ class get_Control {
 
     print(id);
     String myUrl = "$serverUrl/courses?subcategory_id=${id}";
-    http.Response response =
-        await http.get(Uri.parse(myUrl), headers: {
-          "authorization": "Bearer $user_id",
-          "Accept": "application/json",
-          'lang': long.toString()});
+    http.Response response = await http.get(Uri.parse(myUrl), headers: {
+      "authorization": "Bearer $user_id",
+      "Accept": "application/json",
+      'lang': long.toString()
+    });
 
     print(response.body);
     if (response.statusCode == 200) {
@@ -359,7 +358,7 @@ class get_Control {
     final prefs = await SharedPreferences.getInstance();
     final key = 'api_token';
     final long = prefs.get('long');
-    String myUrl = apiacceptencevariable.toString()!="0"?"$serverUrl/governorates":"https://set-institute.net/api/data/governorates";
+    String myUrl = "$serverUrl/governorates";
     print(myUrl);
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});

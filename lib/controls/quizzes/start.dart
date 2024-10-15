@@ -1,19 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-
 import 'package:http/http.dart' as http;
-import 'package:set_academy/model/categories_model.dart';
-import 'package:set_academy/model/governorates.dart';
-import 'package:set_academy/model/question_model.dart';
-import 'package:set_academy/model/specializations.dart';
-import 'package:set_academy/model/universities.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'dart:convert';
-
 import '../../Utils/general_URL.dart';
-import '../../model/lessons_model.dart';
-import '../../model/my_coursee_model.dart';
-import '../../model/quizzes_model.dart';
 
 // ignore: camel_case_types
 class start_quizzes {

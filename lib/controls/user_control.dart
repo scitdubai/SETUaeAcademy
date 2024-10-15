@@ -9,11 +9,10 @@ import 'dart:convert';
 
 import '../Utils/general_URL.dart';
 import '../model/User_model.dart';
-import '../screen/my_courses/my_courses_screen.dart';
+import '../screen/my_courses/my_courses_screen_firstpage.dart';
 
-// ignore: camel_case_types
 class User_Control {
-  login(context, String username, String password, String device_token) async {
+  Future login(context, String username, String password, String device_token) async {
     var myUrl = Uri.parse("$serverUrl/login");
     final response = await http.post(myUrl, body: {
       "phone": username,
@@ -140,6 +139,7 @@ class User_Control {
     if (response.statusCode == 200) {
       try {
         // status = true;
+        print(jsonDecode(response.body)['year']);
         user_model user = user_model.fromJson(jsonDecode(response.body));
         return user;
       } catch (error) {
@@ -148,7 +148,7 @@ class User_Control {
     } else if (response.statusCode == 404) {
       // status = false;
     } else {
-      print(response.body);
+      
       print(response.statusCode);
       // status = false;
       //  login_status = true;

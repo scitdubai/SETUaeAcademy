@@ -1,14 +1,12 @@
 import 'dart:io';
-// import 'package:device_info_plus/device_info_plus.dart';
 import 'package:device_info/device_info.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:set_academy/Utils/general_URL.dart';
-import 'package:set_academy/auth/cpustomBoxDecoration.dart';
+import 'package:set_academy/Utils/imageURL.dart';
+import 'package:set_academy/controls/get_control.dart';
 import 'package:url_launcher/url_launcher.dart' as launcher;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:set_academy/auth/send_code_page.dart';
-import 'package:set_academy/controls/get_control.dart';
 import '../Utils/Color.dart';
 import '../controls/user_control.dart';
 import '../model/governorates.dart';
@@ -22,20 +20,20 @@ class sgin_up extends StatefulWidget {
   @override
   State<sgin_up> createState() => _sgin_upState();
 }
-String phonecode="+";
-String phonenumber="+";
-String countrycode="SY";
+  bool _isHiddenPassword = true;
+String phonecode = "+";
+String phonenumber = "+";
+String countrycode = "UAE";
+
 class _sgin_upState extends State<sgin_up> {
   TextEditingController fnameController = TextEditingController();
   TextEditingController mnameController = TextEditingController();
   TextEditingController lnameController = TextEditingController();
-  // TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordConfController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController addressController = TextEditingController();
 
-  // FirebaseAuth auth = FirebaseAuth.instance;
   String year = '1';
   var group;
   bool istrue = false;
@@ -50,26 +48,31 @@ class _sgin_upState extends State<sgin_up> {
   var universitie;
 
   String? deviceToken;
-gettoken() async {
-    // var deviceInfo = DeviceInfoPlugin();
+  gettoken() async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
-  try {
-    if (Platform.isAndroid) {
-      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      print(androidInfo.androidId);
-      deviceToken=apiacceptencevariable.toString()=="1"?( androidInfo.androidId+androidInfo.device+androidInfo.manufacturer+androidInfo.model):(androidInfo.device+androidInfo.manufacturer+androidInfo.model);
-      print(deviceToken);
-      return androidInfo.androidId;
-    } else if (Platform.isIOS) {
-      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      deviceToken= iosInfo.identifierForVendor+iosInfo.model;
-      return iosInfo.identifierForVendor;
+    try {
+      if (Platform.isAndroid) {
+        AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+        print(androidInfo.androidId);
+        deviceToken = apiacceptencevariable.toString() == "1"
+            ? (androidInfo.androidId +
+                androidInfo.device +
+                androidInfo.manufacturer +
+                androidInfo.model)
+            : (androidInfo.device +
+                androidInfo.manufacturer +
+                androidInfo.model);
+        print(deviceToken);
+        return androidInfo.androidId;
+      } else if (Platform.isIOS) {
+        IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+        deviceToken = iosInfo.identifierForVendor + iosInfo.model;
+        return iosInfo.identifierForVendor;
+      }
+    } catch (e) {
+      print('Error getting device ID: $e');
     }
-   
-  } catch (e) {
-    print('Error getting device ID: $e');
-  }
   }
 
   List<String> Lyear = [
@@ -88,7 +91,21 @@ gettoken() async {
 
   getgovernorate() {
     _get_control.get_governorates().then((value) => setState(() {
-          Lgovernorates = value!;
+          if (apiacceptencevariable.toString()=="0"){
+            Lgovernorates=[Mgovernorates(id: "1", code: '0000', name: "Abu Dhabi", name_array: "name_array"),
+            Mgovernorates(id: "1", code: '0000', name: "Abu Dhabi", name_array: "name_array"),
+            Mgovernorates(id: "2", code: '0000', name: "Dubai", name_array: "name_array"),
+            Mgovernorates(id: "3", code: '0000', name: "Sharjah", name_array: "name_array"),
+            Mgovernorates(id: "4", code: '0000', name: "Ajman", name_array: "name_array"),
+            Mgovernorates(id: "5", code: '0000', name: "Fujairah", name_array: "name_array"),
+            Mgovernorates(id: "6", code: '0000', name: "Ras Al Khaimah", name_array: "name_array"),
+            Mgovernorates(id: "7", code: '0000', name: " Umm Al Quwain", name_array: "name_array")
+            ];
+          }else{
+            Lgovernorates = value!;
+          }
+          
+          
         }));
   }
 
@@ -100,7 +117,11 @@ gettoken() async {
 
   getuniversitie() {
     _get_control.get_universities().then((value) => setState(() {
+      if (apiacceptencevariable.toString()=="0") {
+            Luniversities=[Muniversities(id: "1", code: "0000", name: 'UAEU', name_array: "name_array"),Muniversities(id: "2", code: "0000", name: 'Khalifa University', name_array: "name_array"),Muniversities(id: "3", code: "0000", name: 'American University of Sharjah - AUS', name_array: "name_array")];
+          }else{
           Luniversities = value!;
+          }
         }));
   }
 
@@ -122,10 +143,19 @@ gettoken() async {
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Container(
-            decoration: getCostomBox(),
+            decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF6200EE),  // لون رئيسي للبنفسجي
+                Color(0xFF03DAC6),  // لون ثانوي للأزرق السماوي
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
             height: hi,
             width: wi,
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(8),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -137,12 +167,12 @@ gettoken() async {
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            icon: Icon(Icons.arrow_back_ios))
+                            icon: Icon(Icons.arrow_back_ios,color: Colors.white,))
                       ],
                     ),
                   ),
                   Image.asset(
-                    apiacceptencevariable.toString()!="0"?'assets/images/welcome/set_1.png':'assets/images/course.png',
+                    logo,
                     height: 200,
                   ),
                   Row(
@@ -150,7 +180,7 @@ gettoken() async {
                       Text(
                         'Create an Account'.tr,
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 20),
                       ),
@@ -171,27 +201,7 @@ gettoken() async {
                   SizedBox(
                     height: hi / 70,
                   ),
-                  IntlPhoneField(
-                    validator: (p0) {
-                      if(phonecode=="+"){
-                        return "enter mobile number";
-                      }
-                    },
-                                decoration: InputDecoration(
-                                    labelText: 'Phone Number',
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide(),
-                                    ),
-                                ),
-                                initialCountryCode: 'AE',
-                                onChanged: (phone) {
-                                  phonenumber=phone.number;
-                                  countrycode=phone.countryCode;
-                                  phonecode=(phone.countryCode.toString()+ phone.number.substring(1,10)) as String;
-                                    print(phonecode);
-                                },
-                           ),
-                  // form(phoneController, 'Phone'.tr, TextInputType.phone),
+                  
                   SizedBox(
                     height: hi / 70,
                   ),
@@ -206,9 +216,15 @@ gettoken() async {
                     height: hi / 70,
                   ),
                   form(emailController, 'Email'.tr, TextInputType.emailAddress),
+                    SizedBox(
+                    height: hi / 70,
+                  ),
+                  form(addressController, 'Address'.tr, TextInputType.name),
+                 
                   SizedBox(
                     height: hi / 70,
                   ),
+
                   Column(
                     children: [
                       // apiacceptencevariable.toString()!="0"?
@@ -254,15 +270,11 @@ gettoken() async {
                           icon: Icon(Icons.keyboard_arrow_down_outlined,
                               color: Color(0xff34196b)),
                         ),
-                      ),
+                      )
                       // :SizedBox(),
                     ],
                   ),
-                  SizedBox(
-                    height: hi / 70,
-                  ),
-                  form(addressController, 'Address'.tr, TextInputType.name),
-                  SizedBox(
+                 SizedBox(
                     height: hi / 70,
                   ),
                   Column(
@@ -312,6 +324,7 @@ gettoken() async {
                       ),
                     ],
                   ),
+                  
                   SizedBox(
                     height: hi / 70,
                   ),
@@ -367,6 +380,30 @@ gettoken() async {
                   SizedBox(
                     height: hi / 70,
                   ),
+                  IntlPhoneField(
+                    validator: (p0) {
+                      if (phonecode == "+") {
+                        return "enter mobile number";
+                      }
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Phone Number',
+                      prefixStyle: TextStyle(color: Colors.white),
+                      labelStyle: TextStyle(color: Colors.white),
+                      border: OutlineInputBorder(
+                        
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                    ),
+                    initialCountryCode: 'UAE',
+                    onChanged: (phone) {
+                      phonenumber = phone.number;
+                      countrycode = phone.countryCode;
+                      phonecode = (phone.countryCode.toString() +
+                          phone.number.substring(1, 10)) as String;
+                      print(phonecode);
+                    },
+                  ),
                   SizedBox(
                     height: hi / 70,
                   ),
@@ -375,6 +412,7 @@ gettoken() async {
                       Text(
                         'Are you graduated ?'.tr,
                         style: TextStyle(
+                          color: Colors.white,
                             fontFamily: 'Cobe',
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
@@ -446,7 +484,7 @@ gettoken() async {
                           });
                         },
                       ),
-                      Text('Do you agree'.tr),
+                      Text('Do you agree'.tr,style: TextStyle(color: Colors.white),),
                       TextButton(
                           onPressed: () {
                             launcher.launch(
@@ -485,52 +523,35 @@ gettoken() async {
                                 backgroundColor: Colors.red,
                               ));
                             } else {
+                              print("First Name: ${fnameController.text}");
+                              print("Middle Name: ${mnameController.text}");
+                              print("Last Name: ${lnameController.text}");
+                              print("Phone Number: $phonenumber");
+                              print("Password: ${passwordController.text}");
+                              print("Email: ${emailController.text}");
+                              print("Governorate: $governorate");
+                              print("Address: ${addressController.text}");
+                              print("Specialization: $specialization");
+                              print("University: ${universitie.toString()}");
+                              print("Graduated: ${graduated.toString()}");
+                              print("Year: $year");
+                              print("Device Token: $deviceToken");
+
                               _user_control.register(
-                                    fnameController.text,
-                                    mnameController.text,
-                                    lnameController.text,
-                                    phonenumber,
-                                    passwordController.text,
-                                    emailController.text,
-                                    governorate,
-                                    addressController.text,
-                                    specialization,
-                                    universitie.toString(),
-                                    graduated.toString(),
-                                    year,
-                                    deviceToken!,
-                                    context);
-                              // _user_control.send_code(
-                              //     phoneController.text.toString(), context);
-                              //   print(universitie);
-                              //   print(specialization);
-                              //   print(governorate);
-                              //   print(fnameController.text);
-
-                              //   print('aaaaa' + mnameController.text);
-
-                              //   print(lnameController.text);
-                              //   print(phoneController.text);
-                              //   print('1111' + passwordController.text);
-                              //   print(emailController.text);
-                              //   print(addressController.text);
-                              //   print(graduated);
-                              //   print(deviceToken);
-                              // _user_control.register(
-                              //     fnameController.text.toString(),
-                              //     mnameController.text.toString(),
-                              //     lnameController.text.toString(),
-                              //     phoneController.text.toString(),
-                              //     passwordController.text.toString(),
-                              //     emailController.text.toString(),
-                              //     apiacceptencevariable.toString()!="0"?governorate.toString():"2",
-                              //     addressController.text.toString(),
-                              //     specialization.toString(),
-                              //     apiacceptencevariable.toString()!="0"?universitie.toString():"2",
-                              //     graduated.toString(),
-                              //     year.toString(),
-                              //     deviceToken.toString(),
-                              //     context);
+                                  fnameController.text,
+                                  mnameController.text,
+                                  lnameController.text,
+                                  phonenumber,
+                                  passwordController.text,
+                                  emailController.text,
+                                  governorate,
+                                  addressController.text,
+                                  specialization,
+                                  universitie.toString(),
+                                  graduated.toString(),
+                                  year,
+                                  deviceToken!,
+                                  context);
                             }
                           },
                           child: Text(
@@ -564,7 +585,7 @@ gettoken() async {
                                       width: 2.0, color: Color(0xFF767479)),
                                   borderRadius: BorderRadius.circular(8)),
                               minimumSize: const Size(double.infinity, 50),
-                              backgroundColor: Color(0xFF767479))),
+                             backgroundColor: Color(0xFF767479))),
                   SizedBox(
                     height: hi / 50,
                   ),
@@ -575,37 +596,42 @@ gettoken() async {
         ));
   }
 
-  Column form(controllerText, String Title, TextInputType type) {
-    return Column(
-      children: [
-        Container(
-          height: 50,
-          child: TextFormField(
-            obscureText: type == TextInputType.visiblePassword ? true : false,
-            keyboardType: type,
-            cursorColor: Colors.black,
-            controller: controllerText,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
+Widget form(TextEditingController controller, String hintText, TextInputType inputType,) {
+  return TextField(
+    controller: controller,
+    keyboardType: inputType,
+    obscureText: inputType == TextInputType.visiblePassword ? _isHiddenPassword : false,
+    style: TextStyle(color: Colors.white), // يمكنك تغيير اللون هنا
+    decoration: InputDecoration(
+      suffixIcon: inputType == TextInputType.visiblePassword
+          ? IconButton(
+              icon: Icon(
+                _isHiddenPassword ? Icons.visibility_off : Icons.visibility,
+                color: Colors.black,
               ),
-              filled: true,
-              fillColor: Colors.white,
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(color: Color(0xff34196b))),
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(color: Color(ColorTextField))),
-              hintText: Title,
-              hintStyle:
-                  TextStyle(color: Color(0xff8c9289), fontFamily: 'Cobe'),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+              onPressed: () {
+                setState(() {
+                  _isHiddenPassword = !_isHiddenPassword;
+                });
+              },
+            )
+          : null,
+      filled: true,
+      fillColor: Colors.black.withOpacity(0.1), // يمكنك تغيير لون الخلفية هنا
+      hintText: hintText,
+      hintStyle: TextStyle(color: Colors.white), // لون نص التلميح
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: Colors.white),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: Colors.black),
+      ),
+    ),
+  );
+}
+
 
   Widget SystemOrExpert() {
     return Column(
@@ -619,6 +645,7 @@ gettoken() async {
                   return Colors.green;
                 }),
                 value: "YES".tr,
+                
                 groupValue: group,
                 onChanged: (value) {
                   setState(() {
@@ -632,6 +659,7 @@ gettoken() async {
             Text(
               'YES'.tr,
               style: TextStyle(
+                color: Colors.white,
                   fontFamily: 'Cobe',
                   fontSize: 14,
                   fontWeight: FontWeight.bold),
@@ -659,6 +687,7 @@ gettoken() async {
             Text(
               'NO'.tr,
               style: TextStyle(
+                color: Colors.white,
                   fontFamily: 'Cobe',
                   fontSize: 14,
                   fontWeight: FontWeight.bold),

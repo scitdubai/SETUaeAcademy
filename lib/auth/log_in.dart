@@ -1,16 +1,14 @@
 import 'dart:io';
-
-// import 'package:device_info_plus/device_info_plus.dart';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:set_academy/Utils/general_URL.dart';
-import 'package:set_academy/auth/cpustomBoxDecoration.dart';
-import 'package:set_academy/logale/locale_Cont.dart';
+import 'package:set_academy/Utils/imageURL.dart';
+import 'package:set_academy/locale/locale_Cont.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Utils/Color.dart';
 import '../controls/user_control.dart';
-import '../screen/courses/courses_screen.dart';
+import '../screen/courses_screen_category.dart';
 import 'sign_up.dart';
 
 class login extends StatefulWidget {
@@ -19,7 +17,9 @@ class login extends StatefulWidget {
   @override
   State<login> createState() => _loginState();
 }
-bool isbuttonpresses=false;
+
+bool isbuttonpresses = false;
+
 class _loginState extends State<login> {
   TextEditingController PhoneController = TextEditingController();
   TextEditingController PassController = TextEditingController();
@@ -29,34 +29,35 @@ class _loginState extends State<login> {
   MyLocaleController controller = Get.find();
 
   var deviceToken;
+  
   gettoken() async {
-    // var deviceInfo = DeviceInfoPlugin();
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
-  try {
-    if (Platform.isAndroid) {
-      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-      print(androidInfo.androidId);
-      deviceToken=apiacceptencevariable.toString()=="0"?( androidInfo.androidId+androidInfo.device+androidInfo.manufacturer+androidInfo.model):(androidInfo.device+androidInfo.manufacturer+androidInfo.model);
-      print(deviceToken);
-      return androidInfo.androidId;
-    } else if (Platform.isIOS) {
-      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
-      deviceToken= iosInfo.identifierForVendor+iosInfo.model;
-      return iosInfo.identifierForVendor;
+    try {
+      if (Platform.isAndroid) {
+        AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+        deviceToken = apiacceptencevariable.toString() == "1"
+            ? (androidInfo.androidId +
+                androidInfo.device +
+                androidInfo.manufacturer +
+                androidInfo.model)
+            : (androidInfo.device +
+                androidInfo.manufacturer +
+                androidInfo.model);
+      } else if (Platform.isIOS) {
+        IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+        deviceToken = iosInfo.identifierForVendor + iosInfo.model;
+      }
+    } catch (e) {
+      print('Error getting device ID: $e');
     }
-   
-  } catch (e) {
-    print('Error getting device ID: $e');
-  }
   }
 
   @override
   void initState() {
-    isbuttonpresses=false;
+    isbuttonpresses = false;
     get_long();
     gettoken();
-    // TODO: implement initState
     super.initState();
   }
 
@@ -64,170 +65,154 @@ class _loginState extends State<login> {
   Widget build(BuildContext context) {
     double hi = MediaQuery.of(context).size.height;
     double wi = MediaQuery.of(context).size.width;
+    
     return Scaffold(
       body: SafeArea(
         child: Container(
-        
           height: hi,
           width: wi,
-          decoration: getCostomBox(),
-          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF6200EE),  // لون رئيسي للبنفسجي
+                Color(0xFF03DAC6),  // لون ثانوي للأزرق السماوي
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          padding: EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
-            child: Column(children: [
-              SizedBox(
-                height: hi / 200,
-              ),
-              Image.asset(apiacceptencevariable.toString()!="0"?'assets/images/welcome/set_1.png':'assets/images/course.png'),
-              SizedBox(
-                height: hi / 50,
-              ),
-              Row(
-                children: [
-                  Text(
-                    'LOG IN'.tr,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17,
-                        fontFamily: 'Cobe'),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: hi * 0.05),
+                Center(
+                  child: Image.asset(logo,
+                    height: hi * 0.3,
                   ),
-                ],
-              ),
-              SizedBox(
-                height: hi / 50,
-              ),
-              SizedBox(
-                height: hi / 50,
-              ),
-              form(PhoneController, 'Phone'.tr, TextInputType.phone),
-              SizedBox(
-                height: hi / 50,
-              ),
-              form(
-                  PassController, 'password'.tr, TextInputType.visiblePassword),
-              SizedBox(
-                height: hi / 20,
-              ),
-              !isbuttonpresses?
-              button('LOG IN'.tr):CircularProgressIndicator(),
-              SizedBox(
-                height: hi / 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Don't have an account ?".tr,
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Cobe'),
+                ),
+                SizedBox(height: hi * 0.05),
+                Text(
+                  'LOG IN'.tr,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
                   ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (BuildContext context) {
-                          return sgin_up();
-                        }));
-                      },
-                      child: Text(
-                        'Sign Up'.tr,
-                        style: TextStyle(
-                            // decoration: TextDecoration.underline,
-                            color: Color(0xff34196b),
-                            fontSize: 13,
+                ),
+                SizedBox(height: hi * 0.03),
+                formField(PhoneController, 'Phone'.tr, TextInputType.phone, Icons.phone),
+                SizedBox(height: hi * 0.03),
+                formField(PassController, 'Password'.tr, TextInputType.visiblePassword, Icons.lock),
+                SizedBox(height: hi * 0.05),
+                !isbuttonpresses
+                    ? loginButton('LOG IN'.tr)
+                    : Center(child: CircularProgressIndicator(color: Colors.white)),
+                SizedBox(height: hi * 0.05),
+                Center(
+                  child: Column(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (BuildContext context) {
+                            return Courses(asAGuest: true);
+                          }));
+                        },
+                        child: Text(
+                          'Continue as Guest'.tr,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Cobe'),
-                      )),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Continue as".tr,
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Cobe'),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (BuildContext context) {
-                          return Courses();
-                        }));
-                      },
-                      child: Text(
-                        'a Guest'.tr,
-                        style: TextStyle(
-                            // decoration: TextDecoration.underline,
-                            color: Color(0xff34196b),
-                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (BuildContext context) {
+                            return sgin_up();
+                          }));
+                        },
+                        child: Text(
+                          'Don\'t have an account? Sign Up'.tr,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Cobe'),
-                      )),
-                ],
-              ),
-              // SizedBox(
-              //   height: ,
-              // ),
-              
-            ]),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Column form(controllerText, String Title, TextInputType type) {
-    return Column(
-      children: [
-        Container(
-          height: 50,
-          width: double.infinity,
-          child: TextFormField(
-            // textAlign: TextAlign.center,
-            obscureText: type == TextInputType.visiblePassword
-                ? _isHiddenPassword
-                : false,
-            keyboardType: type,
-            cursorColor: Colors.black,
-            controller: controllerText,
-            decoration: InputDecoration(
-              suffixIcon: type != TextInputType.visiblePassword
-                  ? SizedBox()
-                  : InkWell(
-                      onTap: () {
-                        setState(() {
-                          _isHiddenPassword = !_isHiddenPassword;
-                        });
-                      },
-                      child: Icon(
-                        _isHiddenPassword
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                        color: Color.fromARGB(228, 164, 1, 170),
-                      ),
-                    ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              filled: true,
-              fillColor: Colors.white,
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(color: Color(0xff34196b))),
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide(color: Color(0xFF9C8FB4))),
-              hintText: Title,
-              hintStyle:
-                  TextStyle(color: Color(0xff8c9289), fontFamily: 'Cobe'),
-            ),
+  Widget formField(TextEditingController controller, String hintText, TextInputType inputType, IconData icon) {
+    return TextField(
+      controller: controller,
+      keyboardType: inputType,
+      obscureText: inputType == TextInputType.visiblePassword ? _isHiddenPassword : false,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        prefixIcon: Icon(icon, color: Colors.white),
+        suffixIcon: inputType == TextInputType.visiblePassword
+            ? IconButton(
+                icon: Icon(
+                  _isHiddenPassword ? Icons.visibility_off : Icons.visibility,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _isHiddenPassword = !_isHiddenPassword;
+                  });
+                },
+              )
+            : null,
+        filled: true,
+        fillColor: Colors.black.withOpacity(0.1),
+        hintText: hintText,
+        hintStyle: TextStyle(color: Colors.white70),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.white70),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.white),
+        ),
+      ),
+    );
+  }
+
+  Widget loginButton(String text) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () => loginUser(),
+        style: ElevatedButton.styleFrom(
+          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 100),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          backgroundColor: Colors.white,
+        ),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: Color(0xFF6200EE),
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
           ),
         ),
-      ],
+      ),
     );
   }
 
@@ -242,69 +227,33 @@ class _loginState extends State<login> {
     }
   }
 
-  Column button(String title) {
-    return Column(
-      children: [
-        ElevatedButton(
-            onPressed: () {
-              
-              loginUser();
-            },
-            child: Text(
-              title,
-              style: TextStyle(
-                  fontSize: 17,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
-            style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                    // side: BorderSide(width: 1.0, color: Colors.black),
-                    borderRadius: BorderRadius.circular(15)),
-                minimumSize: const Size(250, 50),
-                backgroundColor: Color(Colorbutton))),
-      ],
-    );
-  }
-
-  _save(String long) async {
-    final prefs = await SharedPreferences.getInstance();
-    final key = 'long';
-    final value = long;
-
-    prefs.setString(key, value);
-    print('done...22' + long);
-  }
-
   void loginUser() async {
-    String _Phone = PhoneController.text.trim();
-    String _password = PassController.text.trim();
+    String phone = PhoneController.text.trim();
+    String password = PassController.text.trim();
 
-    if (_Phone.isEmpty) {
+    if (phone.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('PHONE MUST BE REQUIRED'.tr),
-        backgroundColor: Colors.red,
-      ));
-    } else if (_password.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('PASSWORD MUST BE REQUIRED'.tr),
+        content: Text(phone.isEmpty ? 'Phone is required' : 'Password is required'.tr),
         backgroundColor: Colors.red,
       ));
     } else {
       setState(() {
-                isbuttonpresses=true;
-              });
-      _user_control.login(context, _Phone, _password, deviceToken).whenComplete((){
+        isbuttonpresses = true;
+      });
+      _user_control.login(context, phone, password, deviceToken).whenComplete(() {
         setState(() {
-          isbuttonpresses=false;
+          isbuttonpresses = false;
+        });
+      }).onError((error, stackTrace) {
+        setState(() {
+          isbuttonpresses = false;
         });
       });
-      // Navigator.push(context,
-      //     MaterialPageRoute(builder: (BuildContext context) {
-      //   return home(
-      //     type: type.toString(),
-      //   );
-      // }));
     }
+  }
+
+  _save(String long) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString('long', long);
   }
 }

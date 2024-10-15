@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:set_academy/Utils/general_URL.dart';
 import 'package:set_academy/auth/log_in.dart';
-import 'package:set_academy/screen/my_courses/my_courses_screen.dart';
+import 'package:set_academy/screen/my_courses/my_courses_screen_firstpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'Utils/Color.dart';
 import 'auth/profile.dart';
-import 'controls/complaints/complaints.dart';
-import 'logale/locale_Cont.dart';
+import 'controls/complaints.dart';
+import 'locale/locale_Cont.dart';
 // import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:url_launcher/url_launcher.dart' as launcher;
 
@@ -24,7 +24,7 @@ class _Drawer5State extends State<Drawer5> {
   MyLocaleController controller = Get.find();
 
   TextEditingController ControllerContact = TextEditingController();
-  final Color primary = Colors.white;
+  final Color backgroundColor = Colors.white;
   complaints _complaints = complaints();
   final Color active = Colors.grey.shade800;
 
@@ -36,7 +36,7 @@ class _Drawer5State extends State<Drawer5> {
       child: Container(
         padding: const EdgeInsets.only(left: 20.0, right: 16),
         decoration: BoxDecoration(
-            color: primary,
+            color: backgroundColor,
             boxShadow: const [BoxShadow(color: Colors.black45)]),
         width: 300,
         child: SafeArea(
@@ -82,11 +82,13 @@ class _Drawer5State extends State<Drawer5> {
                       width: 75,
                       child: _buildDivider(),
                     ),
-                    Text("Contact us".tr),
+                     apiacceptencevariable.toString()!="0"?
+                    Text("Contact us".tr):SizedBox(),
+                     apiacceptencevariable.toString()!="0"?
                     Container(
                       width: 75,
                       child: _buildDivider(),
-                    ),
+                    ):SizedBox(),
                   ],
                 )
                 :SizedBox(),
@@ -124,29 +126,52 @@ class _Drawer5State extends State<Drawer5> {
                         icon: FaIcon(FontAwesomeIcons.whatsapp)),
                     IconButton(
                         onPressed: () {
-                          launcher.launch(
-                              "https://www.facebook.com/S.E.T1989?mibextid=ZbWKwL");
+                         final Uri facebookUri = Uri(
+                                    scheme: 'https',
+                                    host: 'www.facebook.com',
+                                    path: 'S.E.T1989',
+                                    queryParameters: {
+                                      'mibextid': 'ZbWKwL',  // في حالة وجود معلمات إضافية
+                                    },
+                                  );
+
+                                  // ثم إطلاق الرابط باستخدام launcher
+                                  launcher.launchUrl(facebookUri);
+
                         },
                         icon: FaIcon(FontAwesomeIcons.facebook)),
                     IconButton(
                         onPressed: () {
-                          launcher.launch(
-                              "https://instagram.com/set___center?igshid=ODM2MWFjZDg=");
+                          final Uri instagramUri = Uri(
+                                      scheme: 'https',
+                                      host: 'instagram.com',
+                                      path: 'set___center',
+                                      queryParameters: {
+                                        'igshid': 'ODM2MWFjZDg='
+                                      },
+                                    );
+
+                                    // ثم إطلاق الرابط
+                                    launcher.launchUrl(instagramUri);
                         },
                         icon: FaIcon(FontAwesomeIcons.instagram)),
                     IconButton(
                         onPressed: () {
-                          launcher.launch("mailto:set.center15@gmail.com");
-                        },
+                         final Uri emailUri = Uri(
+                              scheme: 'mailto',
+                              path: 'set.center15@gmail.com',
+                            );
+
+                            // ثم إطلاق الرابط
+                            launcher.launchUrl(emailUri);
+                            },
                         icon: Icon(
                           Icons.email,
                           size: 30,
                         ))
                   ],
-                )
-                :SizedBox(),
-                // _buildRow(Icons.email, "Contact us".tr),
-                // _buildDivider(),
+                ):SizedBox()
+               
               ],
             ),
           ),
@@ -202,29 +227,6 @@ class _Drawer5State extends State<Drawer5> {
               style: tStyle,
             ),
             const Spacer(),
-            // if (showBadge)
-            //   Material(
-            //     color: Colors.deepOrange,
-            //     elevation: 5.0,
-            //     shadowColor: Colors.red,
-            //     borderRadius: BorderRadius.circular(5.0),
-            //     child: Container(
-            //       width: 25,
-            //       height: 25,
-            //       alignment: Alignment.center,
-            //       decoration: BoxDecoration(
-            //         color: Colors.deepOrange,
-            //         borderRadius: BorderRadius.circular(5.0),
-            //       ),
-            //       child: const Text(
-            //         "5",
-            //         style: TextStyle(
-            //             color: Colors.white,
-            //             fontSize: 12.0,
-            //             fontWeight: FontWeight.bold),
-            //       ),
-            //     ),
-            //   ),
           ],
         ),
       ),
@@ -363,7 +365,12 @@ class _Drawer5State extends State<Drawer5> {
             ),
             InkWell(
               onTap: () {
-                launcher.launch("whatsapp://send?phone=00963938700160");
+                final Uri whatsappUri = Uri(
+                        scheme: 'https',
+                        host: 'wa.me',
+                        path: "+963938700160",
+                      );
+                launcher.launchUrl(whatsappUri);
               },
               child: Card(
                 child: Container(
@@ -378,7 +385,12 @@ class _Drawer5State extends State<Drawer5> {
             ),
             InkWell(
               onTap: () {
-                launcher.launch("whatsapp://send?phone=00963933503106");
+                final Uri whatsappUri = Uri(
+                        scheme: 'https',
+                        host: 'wa.me',
+                        path: "+963933503106",
+                      );
+                launcher.launchUrl(whatsappUri);
               },
               child: Card(
                 child: Container(
@@ -393,7 +405,12 @@ class _Drawer5State extends State<Drawer5> {
             ),
             InkWell(
               onTap: () {
-                launcher.launch("whatsapp://send?phone=00963957867588");
+                final Uri whatsappUri = Uri(
+                        scheme: 'https',
+                        host: 'wa.me',
+                        path: "+963957867588",
+                      );
+                launcher.launchUrl(whatsappUri);
               },
               child: Card(
                 child: Container(
