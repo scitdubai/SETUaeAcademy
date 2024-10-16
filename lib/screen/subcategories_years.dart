@@ -42,7 +42,7 @@ class _subcategoriesState extends State<subcategories> {
   @override
   void initState() {
     getCategories();
-    // secure();
+    secure();
     // TODO: implement initState
     super.initState();
   }

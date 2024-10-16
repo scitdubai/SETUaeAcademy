@@ -22,7 +22,7 @@ class _UserCoursesState extends State<UserCourses> {
   @override
   void initState() {
     super.initState();
-    // secure();
+    secure();
     my_courses();
   }
 

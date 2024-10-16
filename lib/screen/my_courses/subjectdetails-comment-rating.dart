@@ -146,7 +146,7 @@ void initState() {
   check();
   get_comments();
   get_reviews();
-  // secure();
+  secure();
   get_chapters();
   get_teachers();
 
@@ -671,6 +671,7 @@ void initState() {
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white),
                                     ),
+                                    apiacceptencevariable.toString()!="0"?
                                     Row(
                                       children: [
                                         Text(
@@ -681,10 +682,11 @@ void initState() {
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white),
                                         ),
+                                        
                                         Text(
-                                          apiacceptencevariable.toString()!="0"?
+                                          
                                           " sp".tr
-                                          :" \$",
+                                          ,
 
                                           style: TextStyle(
                                               fontSize: 15,
@@ -692,7 +694,7 @@ void initState() {
                                               color: Colors.white),
                                         ),
                                       ],
-                                    ),
+                                    ):SizedBox(),
                                   ],
                                 ),
                                 decoration: BoxDecoration(

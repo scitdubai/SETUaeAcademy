@@ -59,7 +59,7 @@ class _myCoursesState extends State<myCourses> {
 
   @override
   void initState() {
-    // secure();
+    secure();
     my_courses();
     get_long();
     super.initState();

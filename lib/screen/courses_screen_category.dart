@@ -40,7 +40,7 @@ class _CoursesState extends State<Courses> {
   @override
   void initState() {
     getCategories();
-    // secure();
+    secure();
     // TODO: implement initState
     super.initState();
   }

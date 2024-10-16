@@ -100,7 +100,7 @@ class _ContentState extends State<Content> with SingleTickerProviderStateMixin {
     getfiles();
     get_lessonss();
     get_quizzess();
-    // secure();
+    secure();
     // get_question();
     // TODO: implement initState
     _tabController = TabController(length: 3, vsync: this);

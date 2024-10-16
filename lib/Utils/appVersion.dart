@@ -1,1 +1,1 @@
-const String app_veriosn="6.0";
+const String app_veriosn="7.0";

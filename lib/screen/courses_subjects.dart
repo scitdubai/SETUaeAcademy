@@ -40,7 +40,7 @@ class _chaptersState extends State<chapters> {
   @override
   void initState() {
     getchapters();
-    // secure();
+    secure();
     // TODO: implement initState
     super.initState();
   }

@@ -20,7 +20,7 @@ class _no_coursesState extends State<no_courses> {
 
   @override
   void initState() {
-    // secure();
+    secure();
     // TODO: implement initState
     super.initState();
   }
