@@ -8,7 +8,7 @@ flutter_launcher_icons:
 
 
   ios: true
-  image_path_ios: "assets/images/welcome/logo.png"
+  image_path_ios: "assets/images/welcome/set_3.png"
   remove_alpha_channel_ios: true
   remove_alpha_ios: true
 
