@@ -72,7 +72,7 @@ class requests_courses {
     print(api_token);
     print(long);
 
-    String myUrl = '$serverUrl/courses/$id/request';
+    String myUrl =apiacceptencevariable.toString()=="0"? '$serverUrl/courses/$id/request2':'$serverUrl/courses/$id/request';
     http.Response response = await http.post(Uri.parse(myUrl), headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${api_token.toString()}',

@@ -438,7 +438,9 @@ void initState() {
               ),
             ),
             widget.show == true
-                ? InkWell(
+                ? 
+                 apiacceptencevariable.toString()!="0"?
+                InkWell(
                     onTap: () {
                       token_User == null
                           ? {
@@ -555,6 +557,8 @@ void initState() {
                                                           }),
                                                     ),
                                               SizedBox(height: 50),
+                                              
+                                            
                                               ElevatedButton(
                                                 onPressed: () {
                                                   // التأكد من أن المستخدم قد اختار إما "Bank" أو "Coupon"
@@ -675,8 +679,7 @@ void initState() {
                                     Row(
                                       children: [
                                         Text(
-                                          apiacceptencevariable.toString()=="0"?
-                                          " ${double.parse(widget.my_coursee.price)/1000}":" ${widget.my_coursee.price}",
+                                         " ${widget.my_coursee.price}",
                                           style: TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold,
@@ -708,8 +711,24 @@ void initState() {
                               )
                             : SizedBox()
                         : SizedBox(),
-                  )
+                  ): ElevatedButton(
+                                                 style: ElevatedButton.styleFrom(
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius: BorderRadius.circular(15)),
+                                                          minimumSize: const Size(250, 50),
+                                                          backgroundColor: Color(Colorbutton)),
+                                                onPressed: () {
+                                                  _requests_courses.send_code(widget.my_coursee.id.toString(), "code", context).whenComplete(() {
+                                                        Future.delayed(Duration(seconds: 5), () {
+                                                          Navigator.pushAndRemoveUntil(context,
+                                                              MaterialPageRoute(builder: (context) {
+                                                            return myCourses();
+                                                          }), (route) => false);
+                                                        });
+                                                      });
+                                                }, child: Text("Add Course"))
                 : SizedBox(),
+                                             
             SizedBox(
               height: 20,
             )
