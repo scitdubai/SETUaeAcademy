@@ -24,10 +24,6 @@ class DeleteAccout {
       'password': password,
     });
 
-    print(api_token);
-    print(myUrl);
-    print(response.statusCode);
-    print(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
@@ -42,7 +38,6 @@ class DeleteAccout {
           ),
         ));
     } else {
-      print('else');
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(SnackBar(

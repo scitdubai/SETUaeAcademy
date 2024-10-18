@@ -21,7 +21,6 @@ class ExamQuestionPage extends StatefulWidget {
 class _PricingExamState extends State<ExamQuestionPage> {
   @override
   void initState() {
-    print(widget.myquestion.question);
     super.initState();
   }
 

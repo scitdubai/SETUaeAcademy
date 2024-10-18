@@ -26,9 +26,7 @@ class get_Control {
 
     http.Response response = await http.get(Uri.parse(myUrl));
     if (response.statusCode == 200) {
-      print(myUrl);
-      print(response.statusCode);
-      print(response.body);
+   
       List body = jsonDecode(response.body);
       try {
         List<Muniversities> orders = body
@@ -43,7 +41,6 @@ class get_Control {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
@@ -55,7 +52,7 @@ class get_Control {
     String myUrl = "$serverUrl/subcategories?category_id=${id}";
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
-    print(response.body);
+
 
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
@@ -72,7 +69,6 @@ class get_Control {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
@@ -80,10 +76,7 @@ class get_Control {
   Future<List<techers_model>?> get_techers(String id) async {
     String myUrl = "$serverUrl/courses/${id}/teachers";
     http.Response response = await http.get(Uri.parse(myUrl));
-    print("nn " + myUrl);
-    print(response.body);
     if (response.statusCode == 200) {
-      print(response.body);
 
       List body = jsonDecode(response.body);
       try {
@@ -98,13 +91,11 @@ class get_Control {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
 
   Future<List<courses_model>?> get_chapter(String id) async {
-    print(id);
     final prefs = await SharedPreferences.getInstance();
     final key = 'api_token';
     final long = prefs.get('long');
@@ -112,7 +103,6 @@ class get_Control {
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
     if (response.statusCode == 200) {
-      print(response.body);
 
       List body = jsonDecode(response.body);
       try {
@@ -127,7 +117,6 @@ class get_Control {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
@@ -142,7 +131,6 @@ class get_Control {
       'Authorization': 'Bearer ${api_token.toString()}',
       'lang': long.toString()
     });
-    print(response.body);
 
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
@@ -158,7 +146,6 @@ class get_Control {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
@@ -173,7 +160,6 @@ class get_Control {
       'Authorization': 'Bearer ${api_token.toString()}',
       'lang': long.toString()
     });
-    print(response.body);
 
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
@@ -189,7 +175,6 @@ class get_Control {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
@@ -201,7 +186,6 @@ class get_Control {
     final key2 = 'api_token';
     final user_id = prefs.get(key2);
 
-    print(id);
     String myUrl = "$serverUrl/courses?subcategory_id=${id}";
     http.Response response = await http.get(Uri.parse(myUrl), headers: {
       "authorization": "Bearer $user_id",
@@ -209,7 +193,6 @@ class get_Control {
       'lang': long.toString()
     });
 
-    print(response.body);
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
       try {
@@ -225,7 +208,6 @@ class get_Control {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
@@ -235,7 +217,6 @@ class get_Control {
     final key = 'api_token';
     final api_token = prefs.get(key);
     final long = prefs.get('long');
-    print(id);
     String myUrl = "$serverUrl/files?chapter_id=${id}";
     http.Response response = await http.get(Uri.parse(myUrl), headers: {
       'Accept': 'application/json',
@@ -243,7 +224,6 @@ class get_Control {
       'lang': long.toString()
     });
     if (response.statusCode == 200) {
-      print(response.body);
 
       List body = jsonDecode(response.body);
       try {
@@ -259,7 +239,6 @@ class get_Control {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
@@ -268,12 +247,12 @@ class get_Control {
     final prefs = await SharedPreferences.getInstance();
     final key = 'api_token';
     final long = prefs.get('long');
-    print(id);
+
     String myUrl = "$serverUrl/chapters?course_id=${id}";
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
     if (response.statusCode == 200) {
-      print(response.body);
+     
 
       List body = jsonDecode(response.body);
       try {
@@ -289,7 +268,6 @@ class get_Control {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
@@ -298,12 +276,12 @@ class get_Control {
     final prefs = await SharedPreferences.getInstance();
     final key = 'api_token';
     final long = prefs.get('long');
-    print(id);
+  
     String myUrl = "$serverUrl/files?chapter_id=${id}";
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
     if (response.statusCode == 200) {
-      print(response.body);
+   
 
       List body = jsonDecode(response.body);
       try {
@@ -319,7 +297,6 @@ class get_Control {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
@@ -328,12 +305,11 @@ class get_Control {
     final prefs = await SharedPreferences.getInstance();
     final key = 'api_token';
     final long = prefs.get('long');
-    print('object');
+
     String myUrl = "$serverUrl/specializations";
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
 
-    print(response.statusCode);
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
       try {
@@ -349,7 +325,6 @@ class get_Control {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
@@ -359,10 +334,10 @@ class get_Control {
     final key = 'api_token';
     final long = prefs.get('long');
     String myUrl = "$serverUrl/governorates";
-    print(myUrl);
+   
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
-    print(response.statusCode);
+  
 
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
@@ -374,12 +349,11 @@ class get_Control {
             .toList();
         return orders;
       } catch (error) {
-        print(error);
+    
 
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
@@ -389,10 +363,10 @@ class get_Control {
     final key = 'api_token';
     final long = prefs.get('long');
     String myUrl = "$serverUrl/categories";
-    print(long);
+
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
-    print(response.body);
+   
 
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
@@ -409,7 +383,6 @@ class get_Control {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }

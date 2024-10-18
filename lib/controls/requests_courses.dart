@@ -26,11 +26,7 @@ class requests_courses {
           await MultipartFile.fromFile(image.path, filename: fileName),
       'code': ''
     });
-    print(id);
-    print('$serverUrl/courses/$id/request');
-    print(fileName);
-    print(image.path);
-    print(user_id);
+  
     var dio = Dio();
 
     var response = await dio.post(
@@ -43,8 +39,6 @@ class requests_courses {
         },
       ),
     );
-    print(response.data);
-    print(response.statusCode);
     if (response.statusCode == 200 || response.statusCode == 201) {
       AwesomeDialog(
         context: context,
@@ -69,8 +63,6 @@ class requests_courses {
     final api_token = prefs.get(key);
     final long = prefs.get('long');
 
-    print(api_token);
-    print(long);
 
     String myUrl =apiacceptencevariable.toString()=="0"? '$serverUrl/courses/$id/request2':'$serverUrl/courses/$id/request';
     http.Response response = await http.post(Uri.parse(myUrl), headers: {
@@ -80,9 +72,6 @@ class requests_courses {
     }, body: {
       'code': code,
     });
-    print(myUrl);
-    print(response.statusCode);
-    print(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       AwesomeDialog(
         context: context,

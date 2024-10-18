@@ -15,9 +15,7 @@ class get_lessons {
     final api_token = prefs.get(key);
     final long = prefs.get('long');
 
-    print(long);
-    print('long');
-    print(long);
+
 
     String myUrl = "$serverUrl/lessons?chapter_id=${id}";
     http.Response response = await http.get(Uri.parse(myUrl), headers: {
@@ -25,11 +23,7 @@ class get_lessons {
       'Authorization': 'Bearer ${api_token.toString()}',
       'lang': long.toString()
     });
-    print(myUrl);
-    print(response.statusCode);
-    print("____________________");
-    print(response.body);
-    print("____________________");
+
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
       try {
@@ -45,7 +39,6 @@ class get_lessons {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }

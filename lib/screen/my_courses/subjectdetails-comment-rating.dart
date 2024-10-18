@@ -131,17 +131,14 @@ showError(String message) {
 @override
 void initState() {
   super.initState();
-  print(widget.my_coursee.request.toString());
 
   if (widget.my_coursee.request.toString() != "null") {
-    print("done");
+
     setState(() {
       widget.show = false;
     });
-    print(widget.show);
   }
   
-  print(widget.show);
   
   check();
   get_comments();
@@ -550,8 +547,7 @@ void initState() {
                                                           outlineBorderRadius: 15,
                                                           style: TextStyle(fontSize: 17),
                                                           onChanged: (pin) {
-                                                            print("Changed: " + pin);
-                                                          },
+                                                           },
                                                           onCompleted: (pin) {
                                                             Code_Cont.text = pin.toString();
                                                           }),
@@ -1035,7 +1031,7 @@ void initState() {
     );
     if (pickedFile != null) {
       imageFile = File(pickedFile!.path);
-      print(imageFile);
+
       _requests_courses.Send_image(imageFile!, widget.my_coursee.id,
               Code_Cont.text.toString(), context)
           .whenComplete(() {

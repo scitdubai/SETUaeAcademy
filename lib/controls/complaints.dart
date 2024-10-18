@@ -14,7 +14,7 @@ import '../model/my_coursee_model.dart';
 // ignore: camel_case_types
 class complaints {
   Future add_complaints(String message, context) async {
-    print(message + "  aas");
+
     final prefs = await SharedPreferences.getInstance();
     final key = 'api_token';
     final api_token = prefs.get(key);
@@ -27,12 +27,8 @@ class complaints {
       'message': message
     });
 
-    print(api_token);
-    print(myUrl);
-    print(response.statusCode);
-    print(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print('Done');
+     
       Navigator.of(context).pop();
 
       ScaffoldMessenger.of(context)
@@ -48,7 +44,6 @@ class complaints {
           ),
         ));
     } else {
-      print('else');
       AwesomeDialog(
         context: context,
         dialogType: DialogType.warning,

@@ -20,15 +20,10 @@ class User_Control {
       'device_token': device_token
     });
 
-    print(device_token);
-
-    print(response.body);
-    print(response.statusCode);
 
     if (response.statusCode == 200) {
       _save(json.decode(response.body)['api_token'].toString(),username,password);
 
-      print('Done');
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (context) {
         return myCourses();
@@ -55,11 +50,7 @@ class User_Control {
       'device_token': device_token
     });
 
-    print(device_token);
-
-    print(response.body);
-    print(response.statusCode);
-
+  
     if (response.statusCode == 200) {
       return true;
       // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
@@ -104,7 +95,6 @@ class User_Control {
       'device_token': device_token,
     });
 
-    print(response.body);
     if (response.statusCode == 200) {
       _save(json.decode(response.body)['api_token'].toString(),phone,password);
 
@@ -134,12 +124,10 @@ class User_Control {
       'Accept': 'application/json'
     });
 
-    print(response.body);
 
     if (response.statusCode == 200) {
       try {
         // status = true;
-        print(jsonDecode(response.body)['year']);
         user_model user = user_model.fromJson(jsonDecode(response.body));
         return user;
       } catch (error) {
@@ -149,7 +137,6 @@ class User_Control {
       // status = false;
     } else {
       
-      print(response.statusCode);
       // status = false;
       //  login_status = true;
       throw "Error While getting profile";
@@ -173,8 +160,6 @@ class User_Control {
     final prefs = await SharedPreferences.getInstance();
     final key = 'api_token';
     final value = prefs.get(key);
-    print("university : $university");
-    print("pass :"+password);
     String myUrl = "$serverUrl/profile";
     http.Response response = await http.post(Uri.parse(myUrl), headers: {
       'Authorization': 'Bearer $value',
@@ -195,9 +180,7 @@ class User_Control {
       'password_confirmation':password,
     });
 
-    print(response.body);
-    print(response.statusCode);
-
+  
     if (response.statusCode == 200) {
       Navigator.pop(context);
     } else if (response.statusCode == 404) {
@@ -216,7 +199,6 @@ class User_Control {
     http.Response response =
         await http.post(Uri.parse(myUrl), body: {'phone': '963' + phone1});
 
-    print(response.body);
 
     if (response.statusCode == 200) {
       AwesomeDialog(
@@ -253,7 +235,6 @@ class User_Control {
       'code': code,
     });
 
-    print(response.body);
 
     if (response.statusCode == 200) {
       register(

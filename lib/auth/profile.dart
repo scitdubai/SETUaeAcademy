@@ -98,10 +98,7 @@ class _ProfileState extends State<Profile> {
       emailController.text = user!.email.toString();
       addressController.text = user!.address.toString();
       image = user!.image.toString();
-      print("__________________________");
-      print(user!.governorate);
-      print(governorate);
-      print("__________________________");
+
       mygovernorate = user!.governorate['name'].toString();
       myuniversitie = user!.university['name'].toString();
       myspecialization = user!.specialization['name'].toString();

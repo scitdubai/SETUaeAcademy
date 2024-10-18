@@ -76,7 +76,6 @@ class _ContentState extends State<Content> with SingleTickerProviderStateMixin {
         .quizzes(widget.courses.id.toString())
         .then((value) => setState(() {
               _quizzes = value!;
-              print("_quizzes${_quizzes[0].title}");
               isloading3 = false;
             }));
   }
@@ -96,7 +95,6 @@ class _ContentState extends State<Content> with SingleTickerProviderStateMixin {
   void initState() {
     trytofail = 0;
     _onFinishButtonPresses = false;
-    print(widget.courses.id);
     getfiles();
     get_lessonss();
     get_quizzess();
@@ -454,8 +452,6 @@ class _ContentState extends State<Content> with SingleTickerProviderStateMixin {
       elevation: 8,
       child: ListTile(
         onTap: () {
-          print(lessons.subscribed.toString());
-          // print(lessons.free);
           lessons.free != true
               ? {
                   (lessons.subscribed.toString() == "true")

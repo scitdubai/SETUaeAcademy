@@ -54,7 +54,7 @@ class _sgin_upState extends State<sgin_up> {
     try {
       if (Platform.isAndroid) {
         AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-        print(androidInfo.androidId);
+     
         deviceToken = apiacceptencevariable.toString() == "1"
             ? (androidInfo.androidId +
                 androidInfo.device +
@@ -63,7 +63,7 @@ class _sgin_upState extends State<sgin_up> {
             : (androidInfo.device +
                 androidInfo.manufacturer +
                 androidInfo.model);
-        print(deviceToken);
+     
         return androidInfo.androidId;
       } else if (Platform.isIOS) {
         IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
@@ -401,7 +401,7 @@ class _sgin_upState extends State<sgin_up> {
                       countrycode = phone.countryCode;
                       phonecode = (phone.countryCode.toString() +
                           phone.number.substring(1, 10)) as String;
-                      print(phonecode);
+                    
                     },
                   ),
                   SizedBox(
@@ -523,19 +523,7 @@ class _sgin_upState extends State<sgin_up> {
                                 backgroundColor: Colors.red,
                               ));
                             } else {
-                              print("First Name: ${fnameController.text}");
-                              print("Middle Name: ${mnameController.text}");
-                              print("Last Name: ${lnameController.text}");
-                              print("Phone Number: $phonenumber");
-                              print("Password: ${passwordController.text}");
-                              print("Email: ${emailController.text}");
-                              print("Governorate: $governorate");
-                              print("Address: ${addressController.text}");
-                              print("Specialization: $specialization");
-                              print("University: ${universitie.toString()}");
-                              print("Graduated: ${graduated.toString()}");
-                              print("Year: $year");
-                              print("Device Token: $deviceToken");
+                            
 
                               _user_control.register(
                                   fnameController.text,

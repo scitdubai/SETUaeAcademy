@@ -14,7 +14,6 @@ class finish_quizzes {
     final key = 'api_token';
     final api_token = prefs.get(key);
 
-    print(api_token);
 
     String myUrl = "$serverUrl/quizzes?chapter_id=${id}";
     http.Response response = await http.get(Uri.parse(myUrl), headers: {
@@ -22,9 +21,6 @@ class finish_quizzes {
       'Authorization': 'Bearer ${api_token.toString()}',
       // 'long': 'ar'
     });
-    print(myUrl);
-    print(response.statusCode);
-    print(response.body);
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
       try {
@@ -40,7 +36,6 @@ class finish_quizzes {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }
@@ -51,7 +46,6 @@ class finish_quizzes {
     final api_token = prefs.get(key);
     final long = prefs.get('long');
 
-    print(answers.toString());
 
     String myUrl = "$serverUrl/quizzes/${id}/finish";
     http.Response response = await http.post(
@@ -65,9 +59,6 @@ class finish_quizzes {
         'long': long.toString()
       },
     );
-    print(myUrl);
-    print(response.statusCode);
-    print(response.body);
     if (response.statusCode == 200) {
       try {
         return jsonDecode(response.body);

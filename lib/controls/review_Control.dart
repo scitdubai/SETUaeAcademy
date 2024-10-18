@@ -15,9 +15,6 @@ class review_Control {
     final key = 'api_token';
     final api_token = prefs.get(key);
 
-    print(id);
-    print(message);
-    print(rate);
 
     String myUrl = "$serverUrl/courses/${id}/reviews";
     http.Response response = await http.post(Uri.parse(myUrl), headers: {
@@ -27,11 +24,6 @@ class review_Control {
       'message': message,
       'rate': rate
     });
-
-    print(api_token);
-    print(myUrl);
-    print(response.statusCode);
-    print(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
@@ -46,7 +38,6 @@ class review_Control {
           ),
         ));
     } else {
-      print('else');
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(SnackBar(

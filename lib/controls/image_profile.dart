@@ -23,9 +23,7 @@ class profile_image {
     var formData = FormData.fromMap({
       'image': await MultipartFile.fromFile(image.path, filename: fileName),
     });
-    print(user_id);
-    print(image.path);
-    print(user_id);
+ 
     var dio = Dio();
 
     var response = await dio.post(
@@ -38,10 +36,7 @@ class profile_image {
         },
       ),
     );
-    print(image.path);
 
-    print(response.data);
-    print(response.statusCode);
     if (response.statusCode == 200 || response.statusCode == 201) {
       AwesomeDialog(
         context: context,
@@ -66,8 +61,6 @@ class profile_image {
     final api_token = prefs.get(key);
     final long = prefs.get('long');
 
-    print(api_token);
-    print(long);
 
     String myUrl = '$serverUrl/courses/$id/request';
     http.Response response = await http.post(Uri.parse(myUrl), headers: {
@@ -77,9 +70,7 @@ class profile_image {
     }, body: {
       'code': code,
     });
-    print(myUrl);
-    print(response.statusCode);
-    print(response.body);
+
     if (response.statusCode == 200 || response.statusCode == 201) {
       AwesomeDialog(
         context: context,

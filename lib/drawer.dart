@@ -340,7 +340,6 @@ class _Drawer5State extends State<Drawer5> {
   }
 
   Container bottomSheetWhatsapp(setStates) {
-    // print(apiacceptencevariable.toString()!="0");
     return 
     // apiacceptencevariable.toString()!="0"?
     Container(
@@ -470,7 +469,6 @@ class _Drawer5State extends State<Drawer5> {
           ),
           ElevatedButton(
             onPressed: () {
-              print(ControllerContact.text);
               _complaints.add_complaints(
                   ControllerContact.text.toString(), context);
             },
@@ -496,7 +494,6 @@ class _Drawer5State extends State<Drawer5> {
         ElevatedButton(
           onPressed: () {
             setState(() {
-              print(long);
               controller.changeLang(long);
               _save(long);
               Future.delayed(Duration(seconds: 3),(){

@@ -14,15 +14,10 @@ class AppVersion {
     final api_token = prefs.get(key);
     final long = prefs.get('long');
 
-    print(long);
-    print('long');
-    print(long);
 
     String myUrl = "https://set-institute.net/api/latest_version";
     http.Response response = await http.get(Uri.parse(myUrl));
-    print(myUrl);
-    print(response.statusCode);
-    print(response.body);
+ 
     if (response.statusCode == 200) {
       try {
         AppVersionModel user;
@@ -43,7 +38,6 @@ class AppVersion {
         return null;
       }
     } else {
-      print(response.body);
       // throw "Error While getting Properties";
     }
   }

@@ -15,7 +15,6 @@ class get_quizzes {
     final key = 'api_token';
     final api_token = prefs.get(key);
 
-    print(api_token);
 
     String myUrl = "$serverUrl/quizzes?chapter_id=${id}";
     http.Response response = await http.get(Uri.parse(myUrl), headers: {
@@ -23,9 +22,6 @@ class get_quizzes {
       'Authorization': 'Bearer ${api_token.toString()}',
       // 'long': 'ar'
     });
-    print(myUrl);
-    print(response.statusCode);
-    print(response.body);
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
       try {
@@ -52,7 +48,6 @@ class get_quizzes {
     final api_token = prefs.get(key);
     final long = prefs.get('long');
 
-    print(api_token);
 
     String myUrl = "$serverUrl/quizzes?chapter_id=${id}";
     http.Response response = await http.get(Uri.parse(myUrl), headers: {
@@ -60,13 +55,9 @@ class get_quizzes {
       'Authorization': 'Bearer ${api_token.toString()}',
       'long': long.toString()
     });
-    print(myUrl);
-    print(response.statusCode);
-    print(response.body);
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
-      print('body');
-      print(body);
+
       try {
         List<question_model> orders = body
             .map(
