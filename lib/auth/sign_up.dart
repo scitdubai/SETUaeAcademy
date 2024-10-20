@@ -91,19 +91,20 @@ class _sgin_upState extends State<sgin_up> {
 
   getgovernorate() {
     _get_control.get_governorates().then((value) => setState(() {
-          if (apiacceptencevariable.toString()=="0"){
-            Lgovernorates=[Mgovernorates(id: "1", code: '0000', name: "Abu Dhabi", name_array: "name_array"),
-            Mgovernorates(id: "1", code: '0000', name: "Abu Dhabi", name_array: "name_array"),
-            Mgovernorates(id: "2", code: '0000', name: "Dubai", name_array: "name_array"),
-            Mgovernorates(id: "3", code: '0000', name: "Sharjah", name_array: "name_array"),
-            Mgovernorates(id: "4", code: '0000', name: "Ajman", name_array: "name_array"),
-            Mgovernorates(id: "5", code: '0000', name: "Fujairah", name_array: "name_array"),
-            Mgovernorates(id: "6", code: '0000', name: "Ras Al Khaimah", name_array: "name_array"),
-            Mgovernorates(id: "7", code: '0000', name: " Umm Al Quwain", name_array: "name_array")
-            ];
-          }else{
+          // if (apiacceptencevariable.toString()=="0"){
+          //   Lgovernorates=[Mgovernorates(id: "1", code: '0000', name: "Abu Dhabi", name_array: "name_array"),
+          //   Mgovernorates(id: "1", code: '0000', name: "Abu Dhabi", name_array: "name_array"),
+          //   Mgovernorates(id: "2", code: '0000', name: "Dubai", name_array: "name_array"),
+          //   Mgovernorates(id: "3", code: '0000', name: "Sharjah", name_array: "name_array"),
+          //   Mgovernorates(id: "4", code: '0000', name: "Ajman", name_array: "name_array"),
+          //   Mgovernorates(id: "5", code: '0000', name: "Fujairah", name_array: "name_array"),
+          //   Mgovernorates(id: "6", code: '0000', name: "Ras Al Khaimah", name_array: "name_array"),
+          //   Mgovernorates(id: "7", code: '0000', name: " Umm Al Quwain", name_array: "name_array")
+          //   ];
+          // }
+          // else{
             Lgovernorates = value!;
-          }
+          // }
           
           
         }));
@@ -117,11 +118,12 @@ class _sgin_upState extends State<sgin_up> {
 
   getuniversitie() {
     _get_control.get_universities().then((value) => setState(() {
-      if (apiacceptencevariable.toString()=="0") {
-            Luniversities=[Muniversities(id: "1", code: "0000", name: 'UAEU', name_array: "name_array"),Muniversities(id: "2", code: "0000", name: 'Khalifa University', name_array: "name_array"),Muniversities(id: "3", code: "0000", name: 'American University of Sharjah - AUS', name_array: "name_array")];
-          }else{
+      // if (apiacceptencevariable.toString()=="0") {
+      //       Luniversities=[Muniversities(id: "1", code: "0000", name: 'UAEU', name_array: "name_array"),Muniversities(id: "2", code: "0000", name: 'Khalifa University', name_array: "name_array"),Muniversities(id: "3", code: "0000", name: 'American University of Sharjah - AUS', name_array: "name_array")];
+      //     }
+          // else{
           Luniversities = value!;
-          }
+          // }
         }));
   }
 

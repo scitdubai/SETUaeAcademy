@@ -207,9 +207,10 @@ class _ProfileState extends State<Profile> {
                         SizedBox(
                           height: hi / 70,
                         ),
-                        apiacceptencevariable.toString()!="0"?
-                        Text(mygovernorate):SizedBox(),
-                        apiacceptencevariable.toString()!="0"?
+                        // apiacceptencevariable.toString()!="0"?
+                        Text(mygovernorate),
+                        // :SizedBox(),
+                        // apiacceptencevariable.toString()!="0"?
                         Column(
                           children: [
                             Container(
@@ -256,8 +257,8 @@ class _ProfileState extends State<Profile> {
                               ),
                             ),
                           ],
-                        )
-                        :SizedBox(),
+                        ),
+                        // :SizedBox(),
                         SizedBox(
                           height: hi / 70,
                         ),
@@ -313,9 +314,10 @@ class _ProfileState extends State<Profile> {
                         SizedBox(
                           height: hi / 70,
                         ),
-                        apiacceptencevariable.toString()!="0"?
-                        Text(myuniversitie):SizedBox(),
-                        apiacceptencevariable.toString()!="0"?
+                        // apiacceptencevariable.toString()!="0"?
+                        Text(myuniversitie),
+                        // :SizedBox(),
+                        // apiacceptencevariable.toString()!="0"?
                         Column(
                           children: [
                             Container(
@@ -362,8 +364,8 @@ class _ProfileState extends State<Profile> {
                               ),
                             ),
                           ],
-                        )
-                        :SizedBox(),
+                        ),
+                        // :SizedBox(),
                         SizedBox(
                           height: hi / 70,
                         ),

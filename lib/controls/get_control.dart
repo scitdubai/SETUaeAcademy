@@ -337,7 +337,7 @@ class get_Control {
    
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
-  
+    
 
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
