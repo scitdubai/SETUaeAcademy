@@ -488,7 +488,7 @@ class _sgin_upState extends State<sgin_up> {
                       TextButton(
                           onPressed: () {
                             launcher.launch(
-                                "https://docs.google.com/document/d/1_Z7lXOV2Cy9HjKiyqOsO_O22z7G-F8Lmp79GL4SsvKs/edit?usp=sharing");
+                                "https://set-institute.net/privacy-policy");
                           },
                           child: Text(
                             'Terms and Conditions'.tr,
