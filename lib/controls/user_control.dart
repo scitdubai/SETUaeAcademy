@@ -49,7 +49,7 @@ class User_Control {
       "password": password,
       'device_token': device_token
     });
-
+print(response.body);
   
     if (response.statusCode == 200) {
       return true;
@@ -180,7 +180,7 @@ print(response.body);
       'password_confirmation':password,
     });
 
-  
+  print(response.body);
     if (response.statusCode == 200) {
       Navigator.pop(context);
     } else if (response.statusCode == 404) {
@@ -235,7 +235,7 @@ print(response.body);
       'code': code,
     });
 
-
+print(response.body);
     if (response.statusCode == 200) {
       register(
           first_name,

@@ -27,7 +27,8 @@ class get_Control {
     http.Response response = await http.get(Uri.parse(myUrl));
     if (response.statusCode == 200) {
    
-      List body = jsonDecode(response.body);
+    print(response.body);
+     List body = jsonDecode(response.body);
       try {
         List<Muniversities> orders = body
             .map(
@@ -53,7 +54,7 @@ class get_Control {
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
 
-
+print(response.body);
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
       try {
@@ -77,7 +78,7 @@ class get_Control {
     String myUrl = "$serverUrl/courses/${id}/teachers";
     http.Response response = await http.get(Uri.parse(myUrl));
     if (response.statusCode == 200) {
-
+print(response.body);
       List body = jsonDecode(response.body);
       try {
         List<techers_model> orders = body
@@ -103,7 +104,7 @@ class get_Control {
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
     if (response.statusCode == 200) {
-
+print(response.body);
       List body = jsonDecode(response.body);
       try {
         List<courses_model> orders = body
@@ -131,7 +132,7 @@ class get_Control {
       'Authorization': 'Bearer ${api_token.toString()}',
       'lang': long.toString()
     });
-
+print(response.body);
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
       try {
@@ -160,7 +161,7 @@ class get_Control {
       'Authorization': 'Bearer ${api_token.toString()}',
       'lang': long.toString()
     });
-
+print(response.body);
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
       try {
@@ -192,7 +193,7 @@ class get_Control {
       "Accept": "application/json",
       'lang': long.toString()
     });
-
+print(response.body);
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
       try {
@@ -226,6 +227,7 @@ class get_Control {
     if (response.statusCode == 200) {
 
       List body = jsonDecode(response.body);
+      print(response.body);
       try {
         List<files_model> orders = body
             .map(
@@ -253,7 +255,7 @@ class get_Control {
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
     if (response.statusCode == 200) {
      
-
+print(response.body);
       List body = jsonDecode(response.body);
       try {
         List<courses_model> orders = body
@@ -281,7 +283,7 @@ class get_Control {
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
     if (response.statusCode == 200) {
-   
+   print(response.body);
 
       List body = jsonDecode(response.body);
       try {
@@ -312,6 +314,7 @@ class get_Control {
 
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
+      print(response.body);
       try {
         List<Mspecializations> orders = body
             .map(
@@ -338,7 +341,7 @@ class get_Control {
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
     
-
+print(response.body);
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
       try {
@@ -367,7 +370,7 @@ class get_Control {
     http.Response response =
         await http.get(Uri.parse(myUrl), headers: {'lang': long.toString()});
    
-
+print(response.body);
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
       try {

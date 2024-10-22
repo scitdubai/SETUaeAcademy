@@ -23,6 +23,7 @@ class finish_quizzes {
     });
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
+      print(response.body);
       try {
         List<quizzes_model> orders = body
             .map(
@@ -46,7 +47,7 @@ class finish_quizzes {
     final api_token = prefs.get(key);
     final long = prefs.get('long');
 
-
+    
     String myUrl = "$serverUrl/quizzes/${id}/finish";
     http.Response response = await http.post(
       Uri.parse(myUrl),
@@ -59,6 +60,7 @@ class finish_quizzes {
         'long': long.toString()
       },
     );
+    print(response.body);
     if (response.statusCode == 200) {
       try {
         return jsonDecode(response.body);

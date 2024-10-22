@@ -24,6 +24,7 @@ class review_Control {
       'message': message,
       'rate': rate
     });
+    print(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()

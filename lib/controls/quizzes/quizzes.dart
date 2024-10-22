@@ -24,6 +24,7 @@ class get_quizzes {
     });
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
+      print(response.body);
       try {
         List<quizzes_model> orders = body
             .map(
@@ -57,7 +58,7 @@ class get_quizzes {
     });
     if (response.statusCode == 200) {
       List body = jsonDecode(response.body);
-
+print(response.body);
       try {
         List<question_model> orders = body
             .map(

@@ -70,7 +70,7 @@ class profile_image {
     }, body: {
       'code': code,
     });
-
+print(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       AwesomeDialog(
         context: context,

@@ -20,7 +20,7 @@ class comments_control {
     }, body: {
       'comment': comment
     });
-
+print(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()

@@ -19,6 +19,7 @@ class AppVersion {
     http.Response response = await http.get(Uri.parse(myUrl));
  
     if (response.statusCode == 200) {
+      print(response.body);
       try {
         AppVersionModel user;
         if (Platform.isAndroid) {
